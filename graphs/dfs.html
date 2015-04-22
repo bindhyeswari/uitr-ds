@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        // working with a graph data structure
+        // the following graph structure uses an adjacency list
+        function Vertex(value) {
+            this.val = value;
+
+        }
+
+        function Graph(vertices) {
+            this.vertices = vertices;
+            // create the adjacency list
+            this.adj = [];
+            for (var i = 0; i < vertices.length; i++) {
+                this.adj[i] = {}; // did not use an array because of performanc
+                // issues for sparse arrays over 1000 in size
+            }
+        }
+
+        Graph.prototype.addEdge = function (start, end) {
+            // starting and ending vertices of an edge
+            this.adj[end][start] = this.vertices[start];
+            this.adj[start][end] = this.vertices[end];
+        };
+
+        // testing code
+        var vertices = [{ name: 'Jahara' }, { name: 'Ramya' }, { name: 'Wei' }].map(function (elem) {
+            return new Vertex(elem);
+        });
+
+        var friends = new Graph(vertices);
+
+        friends.addEdge(0,1);
+
+        console.log(friends);
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
